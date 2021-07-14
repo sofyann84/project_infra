@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\SummaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,9 @@ use App\Http\Controllers\TaskController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('summary.index');
 });
 
 Route::resource('sites', SiteController::class);
 Route::resource('tasks', TaskController::class);
+Route::resource('summary', SummaryController::class);
