@@ -9,8 +9,12 @@ class Site extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'sitename', 'area'
+    ];
+
     public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Task::class, 'siteid');
     }
 }

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Task;
 use App\Models\Site;
 
-class SiteController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,9 @@ class SiteController extends Controller
     public function index()
     {
 
-        $sites = Site::latest()->paginate(5);
+        $tasks = Task::latest()->paginate(5);
 
-        return view('sites.index', compact('sites'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('tasks.index', compact('tasks'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -27,7 +28,8 @@ class SiteController extends Controller
      */
     public function create()
     {
-        return view('sites.create');
+        $sites = Site::orderBy('id')->get();
+        return view('tasks.create', compact('sites'));
     }
 
     /**
@@ -39,14 +41,15 @@ class SiteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'sitename' => 'required',
-            'area' => 'required',
+            'taskname' => 'required',
+            'vendor' => 'required',
+            'siteid' => 'required'
         ]);
 
 
-        Site::create($request->all());
+        Task::create($request->all());
 
-        return redirect()->route('sites.index')->with('success', 'Site created successfully.');
+        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 
     /**
@@ -55,9 +58,9 @@ class SiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Site $site)
+    public function show(Task $task)
     {
-        return view('sites.show', compact('site'));
+        return view('tasks.show', compact('task'));
     }
 
     /**
@@ -66,9 +69,10 @@ class SiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Site $site)
+    public function edit(Task $task)
     {
-        return view('sites.edit', compact('site'));
+        $sites = Site::orderBy('id')->get();
+        return view('tasks.edit', compact('task', 'sites'));
     }
 
     /**
@@ -78,16 +82,16 @@ class SiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Site $site)
+    public function update(Request $request, Task $task)
     {
         $request->validate([
-            'sitename' => 'required',
-            'area' => 'required',
+            'taskname' => 'required',
+            'vendor' => 'required',
         ]);
 
-        $site->update($request->all());
+        $task->update($request->all());
 
-        return redirect()->route('sites.index')->with('success', 'Site updated successfully');
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully');
     }
 
     /**
@@ -96,10 +100,10 @@ class SiteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Site $site)
+    public function destroy(Task $task)
     {
-        $site->delete();
+        $task->delete();
 
-        return redirect()->route('sites.index')->with('success', 'Site deleted successfully');
+        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully');
     }
 }

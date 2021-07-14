@@ -9,8 +9,13 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'taskname', 'vendor', 'siteid'
+    ];
+
+
     public function site()
     {
-        return $this->belongsTo(Site::class);
+        return $this->belongsTo(Site::class, 'siteid');
     }
 }
