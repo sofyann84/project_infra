@@ -16,14 +16,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Summary <span class="sr-only">(current)</span></a>
+                    <li class="nav-item{{ str_contains(request()->route()->getActionName(), 'Summary') ? ' active' : ''}}">
+                        <a class="nav-link" href="/">Summary{!! str_contains(request()->route()->getActionName(), 'Summary') ? htmlspecialchars_decode(' <span class="sr-only">(current)</span>') : ''!!}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/sites">Site</a>
+                    <li class="nav-item{{ str_contains(request()->route()->getActionName(), 'Site') ? ' active' : ''}}">
+                        <a class="nav-link" href="/sites">Site{!! str_contains(request()->route()->getActionName(), 'Summary') ? htmlspecialchars_decode(' <span class="sr-only">(current)</span>') : ''!!}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/tasks">Task</a>
+                    <li class="nav-item{{ str_contains(request()->route()->getActionName(), 'Task') ? ' active' : ''}}">
+                        <a class="nav-link" href="/tasks">Task{!! str_contains(request()->route()->getActionName(), 'Summary') ? htmlspecialchars_decode(' <span class="sr-only">(current)</span>') : ''!!}</a>
                     </li>
                 </ul>
             </div>

@@ -47,6 +47,6 @@
     @endforeach
 </table>
 
-{!! $sites->links() !!}
+{!! $sites->links('pagination::bootstrap-4') !!}
 
 @endsection

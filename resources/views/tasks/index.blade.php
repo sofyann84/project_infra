@@ -49,6 +49,6 @@
     @endforeach
 </table>
 
-{!! $tasks->links() !!}
+{!! $tasks->links('pagination::bootstrap-4') !!}
 
 @endsection

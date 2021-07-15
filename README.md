@@ -1,4 +1,18 @@
-## Cara Instalasi
+# Cara Instalasi
+
+- Buka Terminal / CMD
+- Clone project <code>git clone https://github.com/sofyann84/project_infra.git</code>
+- cd project_infra
+- ketikkan <code>composer install</code>
+- Kemudian ketikkan <code>cp .env.example .env</code>
+- ketikkan <code>php artisan key:generate</code>
+- Buat database baru bernama <code>db_project_infra</code> di database yang kamu miliki
+- Konfigurasi database di file <code>.env</code> yang ada di folder project_infra
+- Ketik <code>php artisan migrate</code>
+- ketik <code>php artisan db:seed --class=ProjectSeeder</code>
+- Jalankan dengan mengetik <code>php artisan serve</code>
+- Buka browser dan ketikkan <code>http://127.0.0.1:8000</code>
+
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
